@@ -1,19 +1,13 @@
 import React from 'react';
 import './App.css';
-import NewsList from './components/newsList/newsList';
+import NewsList from './components/newsList';
 import Navbar from './components/navbar';
-import Sidebar from './components/sidebar';
+import Drawer from './components/drawer';
 
 function App() {
   return (
     <div className="App">
-      <div>
-        <Navbar/>
-        <NewsList/>
-      </div>
-      <div>
-        <Sidebar/>
-      </div>
+        <Drawer/>
     </div>
   );
 }

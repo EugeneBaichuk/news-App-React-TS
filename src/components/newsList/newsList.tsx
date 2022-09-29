@@ -1,4 +1,4 @@
-import NewsService from "../../../services"
+import NewsService from "../../services"
 import { useEffect, useState } from "react";
 
 export const NewsList = () => {

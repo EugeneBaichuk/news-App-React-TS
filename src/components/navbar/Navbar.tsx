@@ -1,63 +1,27 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import PersonIcon from '@mui/icons-material/Person';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
 
 import './navbar.css';
 
-
-interface LinkTabProps {
-  children?: any;
-  label?: any;
-  href?: string;
-  style?: any;
-}
-
-function LinkTab(props: LinkTabProps) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
-
 export default function Navbar() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
-  const link = (
-    <div className='login'>
-    <span><PersonIcon/></span>
-    <span>Sign in</span>
-    </div>
-  );
-
   return (
-    <Box sx={{ width: '100%', display: "flex", justifyContent:"space-between", position:"fixed" }}>
-      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-        <LinkTab label={link}>
-        </LinkTab>
-        <div className="wrapper">
-          <div className="nav-border"></div>
-        </div>
-        <LinkTab label="Home"/>
-        <LinkTab label="News" />
-        <LinkTab label="Sport"/>
-        <LinkTab label="Travel"/>
-      </Tabs>
-      <div>
+    <Box sx={{ display: "flex", position:"fixed"}}>
+      <ListItem style={{width: 195, color: "#212121", paddingLeft: 0}}>
+          <ListItemButton>
+            <ListItemIcon>
+              <PersonIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Sign in"/>
+          </ListItemButton>
+      </ListItem>
         <IconButton sx={{ p: '10px' }} aria-label="menu">
           <MenuIcon />
         </IconButton>
@@ -69,7 +33,6 @@ export default function Navbar() {
         <IconButton type="button" sx={{ p: '10px', mr: 10 }} aria-label="search">
           <SearchIcon />
         </IconButton>
-    </div>
     </Box>
   );
 }
