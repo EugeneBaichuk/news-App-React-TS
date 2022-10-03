@@ -2,7 +2,33 @@
   width: 100%; 
   display: flex;
   justify-content: space-between;
+}
 
+.navbar {
+  display: flex; 
+  position: fixed; 
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar__logo {
+  width: 195px;
+  color: green;
+  line-height: 64px;
+}
+
+.navbar__pos {
+  display: flex; 
+  align-items: center;
+}
+
+.navbar__input {
+  border-bottom: 1px solid #757575;
+}
+
+.navbar__sign-in {
+  width: 195; 
+  color: #212121;
 }
 
 .wrapper {
@@ -20,4 +46,10 @@
 .login {
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+  .navbar__logo {
+    display: none;
+  }
 }
