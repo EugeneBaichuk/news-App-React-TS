@@ -108,7 +108,9 @@ export default function RespDrawer({ window }: Props) {
           </Drawer>
         </Box>
       </Box>
-      <Home/>
+      <div style={{margin: "100px 0 0 180px"}}>
+        <Home/>
+      </div>
     </>
   );
 }
