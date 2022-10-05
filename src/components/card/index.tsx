@@ -1,2 +1,2 @@
-import RandomCard from "./Card";
-export default RandomCard;
+import NewsCard from "./Card";
+export default NewsCard;

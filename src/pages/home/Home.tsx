@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RandomCard from "../../components/card";
+import NewsCard from "../../components/card";
 import NewsService from "../../services";
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
     const random2 = !!newsArr && newsArr[getRandomInt(11,20)];
 
     const getRandomArticle = () => {
-        NewsService.getResource()
+        NewsService.getResource('top-headlines?country=ru&category=business')
         .then(res => {
             setNewsArr(res.data.articles);
         });
@@ -31,9 +31,9 @@ const Home = () => {
         <>
             {!newsArr && (<div>Loading...</div>)}
             {newsArr && (<div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
-                <RandomCard cardObj={random1} cardWidth={600}/>
-                <RandomCard cardObj={random2} cardWidth={600}/>
-                {newsArr.map((article: any) => <RandomCard key={article.title} cardObj={article} cardWidth={1240}/>)}
+                <NewsCard cardObj={random1} cardWidth={600}/>
+                <NewsCard cardObj={random2} cardWidth={600}/>
+                {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article} cardWidth={1240}/>)}
             </div>)}
         </>
     );

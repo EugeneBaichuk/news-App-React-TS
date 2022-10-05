@@ -1,19 +1,37 @@
-import NewsService from "../../services"
 import { useEffect, useState } from "react";
+import NewsCard from "../../components/card";
+import NewsService from "../../services";
 
-export const NewsList = () => {
-  const [news, setNews] = useState();
+type propsType = {
+    category: string
+}
 
-  useEffect(() => {
-    NewsService.getResource().then(res => {
-      let firstResult = res.data.articles[4].content;
-      setNews(firstResult);
-    })
-  }, []);
+export const NewsList: React.FC<propsType> = ({category}) => {
+    const [newsArr, setNewsArr] = useState <any> (null);
 
-  return (
-  <>
-  {!!news && <div >{news}</div>}
-  </>
-  );
+    const getRandomArticle = () => {
+        NewsService.getResource(`top-headlines?country=ru&category=${category}`)
+        .then(res => {
+            setNewsArr(res.data.articles);
+        });
+    }
+
+    useEffect(() => {
+        getRandomArticle();
+        const currentInterval = setInterval(getRandomArticle, 5000);
+        return () => {clearInterval(currentInterval)};
+    }, []);
+
+    const jsx = (
+        <>
+            {!newsArr && (<div>Loading...</div>)}
+            {newsArr && (
+                <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
+                    {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article} cardWidth={"93%"}/>)}
+                </div>
+            )}
+        </>
+    );
+
+    return jsx;
 }

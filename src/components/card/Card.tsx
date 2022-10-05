@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 
-export default function RandomCard({cardObj, cardWidth}: any) {
+export default function NewsCard({cardObj, cardWidth}: any) {
   const {urlToImage, title, description} = cardObj;
 
   const transformString = (string: string, num: number) => {

@@ -1,2 +1,2 @@
-import { NewsList } from "./newsList";
+import { NewsList } from "./NewsList";
 export default NewsList;

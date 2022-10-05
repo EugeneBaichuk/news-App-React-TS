@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import {Outlet} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
@@ -12,14 +14,14 @@ import Toolbar from '@mui/material/Toolbar';
 
 import HomeIcon from '@mui/icons-material/Home';
 import SportsFootballIcon from '@mui/icons-material/SportsFootball';
-import LocalAirportIcon from '@mui/icons-material/LocalAirport';
 import BookIcon from '@mui/icons-material/Book';
-
-import Home from '../../pages/home/Home';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import BiotechIcon from '@mui/icons-material/Biotech';
 
 import Navbar from '../navbar';
 
-const drawerWidth = 180;
+const drawerWidth = 200;
 interface Props {
   window?: () => Window;
 }
@@ -32,26 +34,31 @@ export default function RespDrawer({ window }: Props) {
   };
 
   const drawerArr = [
-    {text:'Home', icon: (<HomeIcon/>)}, 
-    {text:'Hot News', icon: (<NewReleasesIcon/>)}, 
-    {text:'Sports', icon: (<SportsFootballIcon/>)}, 
-    {text:'Travel', icon: (<LocalAirportIcon/>)}, 
-    {text:'Blog', icon: (<BookIcon/>)}, 
+    {text:'Home', icon: (<HomeIcon/>), link: '/'}, 
+    {text:'Hot News', icon: (<NewReleasesIcon/>), link: 'hot-news' }, 
+    {text:'Sports', icon: (<SportsFootballIcon/>), link: 'sports'}, 
+    {text:'Business', icon: (<BusinessCenterIcon/>), link: 'business'},
+    {text:'Entertainment', icon: (<SportsEsportsIcon/>), link: 'entertainment'},
+    {text:'Technology', icon: (<BiotechIcon/>), link: 'technology'},
+    {text:'Blog', icon: (<BookIcon/>), link: 'blog'}, 
   ];
 
   const drawer = (
     <div>
       <List>
         <Toolbar/>
-        {drawerArr.map(({text, icon}) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {icon}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {drawerArr.map(({text, icon, link}) => (
+          <Link key={text} to={link} >
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {icon}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+
         ))}
       </List>
       
@@ -108,8 +115,8 @@ export default function RespDrawer({ window }: Props) {
           </Drawer>
         </Box>
       </Box>
-      <div style={{margin: "100px 0 0 180px"}}>
-        <Home/>
+      <div style={{margin: "100px 0 0 200px"}}>
+        <Outlet/>
       </div>
     </>
   );
