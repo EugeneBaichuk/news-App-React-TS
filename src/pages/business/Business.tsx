@@ -1,5 +1,5 @@
-import NewsList from "../../components/newsList"
+import NewsList from "../../components/_common/newsList"
 
 export const Business = () => {
-  return <NewsList category={'business'}/>
+  return <NewsList headlines={'everything?q=business&language=en&sortBy=popularity'}/>
 }

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {Outlet} from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import { CustomLink } from '../../_common/customLink/CustomLink';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
@@ -27,7 +27,7 @@ interface Props {
 }
 
 export default function RespDrawer({ window }: Props) {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -48,7 +48,7 @@ export default function RespDrawer({ window }: Props) {
       <List>
         <Toolbar/>
         {drawerArr.map(({text, icon, link}) => (
-          <Link key={text} to={link} >
+          <CustomLink key={text} to={link} >
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -57,7 +57,7 @@ export default function RespDrawer({ window }: Props) {
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </CustomLink>
 
         ))}
       </List>
@@ -75,7 +75,7 @@ export default function RespDrawer({ window }: Props) {
             width: { sm: "100%" },
             padding: 0,
             ml: { sm: `${drawerWidth}px` },
-            zIndex: (theme) => theme.zIndex.drawer + 1,
+            zIndex: (theme: any) => theme.zIndex.drawer + 1,
           }}
         >
           <Toolbar style={{backgroundColor: "white", padding: 0}}>

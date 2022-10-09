@@ -1,9 +1,9 @@
-import NewsList from "../../components/newsList";
+import NewsList from "../../components/_common/newsList";
 
 const Entertainment = () => {
   
 
-  return <NewsList category={'entertainment'}/>;
+  return <NewsList headlines={'everything?q=entertainment&language=en&sortBy=popularity'}/>;
 }
 
 export default Entertainment;

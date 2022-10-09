@@ -1,5 +1,5 @@
+import NewsList from "../../components/_common/newsList"
+
 export const HotNews = () => {
-  return (
-    <div>HotNews</div>
-  )
+  return <NewsList headlines={'everything?q=hot&language=en&sortBy=popularity'}/>
 }
