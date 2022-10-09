@@ -8,8 +8,12 @@ type propsType = {
     search?: string
 }
 
+interface articleT {
+    
+}
+
 export const NewsList: React.FC<propsType> = ({headlines, search}) => {
-    const [newsArr, setNewsArr] = useState <any> (null);
+    const [newsArr, setNewsArr] = useState <any | null> (null);
 
     useEffect(() => {
         NewsService.getResource(headlines)

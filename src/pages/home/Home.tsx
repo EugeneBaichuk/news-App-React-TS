@@ -4,7 +4,7 @@ import Loading from "../../components/_common/loading";
 import NewsService from "../../services";
 
 const Home = () => {
-    const [newsArr, setNewsArr] = useState <any> (null);
+    const [newsArr, setNewsArr] = useState <any | null> (null);
     const getRandomInt = (min: number, max: number) => {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -31,9 +31,9 @@ const Home = () => {
             {!newsArr && <Loading/>}
             {newsArr && (<div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
                 
-                <NewsCard cardObj={random1} cardWidth={600}/>
-                <NewsCard cardObj={random2} cardWidth={600}/>
-                {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article} cardWidth={1240}/>)}
+                <NewsCard cardObj={random1} cardWidth="600"/>
+                <NewsCard cardObj={random2} cardWidth="600"/>
+                {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article} cardWidth="1240"/>)}
             </div>)}
         </>
     );

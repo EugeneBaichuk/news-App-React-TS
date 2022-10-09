@@ -1,10 +1,16 @@
+import {FC} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
-export default function NewsCard({cardObj, cardWidth}: any) {
+type Props = {
+  cardObj: any;
+  cardWidth: string;
+}
+
+export const  NewsCard: FC<Props> =  ({cardObj, cardWidth}) => {
   const {urlToImage, title, description} = cardObj;
 
   const transformString = (string: string, num: number) => {

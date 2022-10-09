@@ -1,5 +1,4 @@
 import axios from "axios";
-//import puppeteer from 'puppeteer';
 
 export const NewsService = {
     _apiBase: "https://newsapi.org/v2/",
@@ -7,13 +6,5 @@ export const NewsService = {
     async getResource (headlines: string) {
       const res = await axios.get(`${this._apiBase}${headlines}${this._apiKey}`);
       return res;
-    },
-  //   async fetchProductList(url: any) {
-  //     const browser = await puppeteer.launch({ 
-  //         headless: true, 
-  //         defaultViewport: null, 
-  //     });
-  //     const page = await browser.newPage();
-  //     await page.goto(url, { waitUntil: 'networkidle2' });
-  // }
+    }
 }

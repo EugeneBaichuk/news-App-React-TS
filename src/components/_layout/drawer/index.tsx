@@ -1,2 +1,2 @@
-import Drawer from "./Drawer";
-export default Drawer;
+import {RespDrawer} from "./Drawer";
+export default RespDrawer;

@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
 import Home from './pages/home'
-import Drawer from './components/_layout/drawer';
+import RespDrawer from './components/_layout/drawer';
 import HotNews from './pages/hotNews';
 import Sports from './pages/sports';
 import Business from './pages/business';
@@ -10,7 +10,17 @@ import Blog from './pages/blog';
 import Technology from './pages/technology';
 import Search from './pages/search';
 
-export const Context = createContext <any>({});
+export interface SearchT {
+  search: Array<string | any>
+  searchVal: Array<string | any>
+  setCurrentSearchVal: (() => void) | null;
+}
+
+export const Context = createContext <SearchT>({
+  search: [],
+  searchVal: [],
+  setCurrentSearchVal: null
+});
 
 function App() {
   const [searchVal, setSearchVal] = useState("");
@@ -28,7 +38,7 @@ function App() {
     }
     }>
         <Routes>
-          <Route path='/' element={<Drawer/>}>
+          <Route path='/' element={<RespDrawer/>}>
             <Route index element={<Home/>}/>
             <Route path='hot-news' element={<HotNews/>}/>
             <Route path='sports' element={<Sports/>}/>

@@ -18,6 +18,7 @@ import BookIcon from '@mui/icons-material/Book';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BiotechIcon from '@mui/icons-material/Biotech';
+import {FC} from 'react';
 
 import Navbar from '../navbar';
 
@@ -26,7 +27,7 @@ interface Props {
   window?: () => Window;
 }
 
-export default function RespDrawer({ window }: Props) {
+export const RespDrawer: FC<Props> = ({ window }) => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
   const handleDrawerToggle = () => {
