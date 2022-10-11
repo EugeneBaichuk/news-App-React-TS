@@ -11,15 +11,15 @@ import Technology from './pages/technology';
 import Search from './pages/search';
 
 export interface SearchT {
-  search: Array<string | any>
-  searchVal: Array<string | any>
-  setCurrentSearchVal: (() => void) | null;
+  search: Array<string | ((val: string)=>void)>
+  searchVal: Array<string | ((val: string)=>void)>
+  setCurrentSearchVal: (() => void);
 }
 
 export const Context = createContext <SearchT>({
   search: [],
   searchVal: [],
-  setCurrentSearchVal: null
+  setCurrentSearchVal: ()=>{},
 });
 
 function App() {

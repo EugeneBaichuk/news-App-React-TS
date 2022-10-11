@@ -31,9 +31,9 @@ const Home = () => {
             {!newsArr && <Loading/>}
             {newsArr && (<div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
                 
-                <NewsCard cardObj={random1} cardWidth="600"/>
-                <NewsCard cardObj={random2} cardWidth="600"/>
-                {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article} cardWidth="1240"/>)}
+                <NewsCard cardObj={random1} cardWidth="600px"/>
+                <NewsCard cardObj={random2} cardWidth="600px"/>
+                {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article} cardWidth="1240px"/>)}
             </div>)}
         </>
     );

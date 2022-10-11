@@ -18,6 +18,6 @@ export const Search = () => {
     useEffect(() => {
         navigate(rout);
     }, []);
-    const [search] = useContext<SearchT>(Context).search;
+    const [search] = useContext(Context).search;
     return <NewsList search={search} headlines={`everything?q=${search}&language=en&sortBy=popularity`}/>
 }
