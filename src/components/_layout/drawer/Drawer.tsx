@@ -11,7 +11,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
-
+import Navbar from '../navbar';
 import HomeIcon from '@mui/icons-material/Home';
 import SportsFootballIcon from '@mui/icons-material/SportsFootball';
 import BookIcon from '@mui/icons-material/Book';
@@ -20,7 +20,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import {FC} from 'react';
 
-import Navbar from '../navbar';
+import './drawer.css';
 
 const drawerWidth = 200;
 interface Props {
@@ -116,7 +116,7 @@ export const RespDrawer: FC<Props> = ({ window }) => {
           </Drawer>
         </Box>
       </Box>
-      <div style={{margin: "100px 0 0 200px"}}>
+      <div className='content'>
         <Outlet/>
       </div>
     </>

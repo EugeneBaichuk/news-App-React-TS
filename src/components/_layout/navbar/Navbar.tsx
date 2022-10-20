@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon from '@mui/icons-material/Menu';
 import TextField from '@mui/material/TextField';
+import { CustomLink } from '../../_common/customLink/CustomLink';
 
 
 import './navbar.css';
@@ -21,8 +22,14 @@ type NavbarProps = {
 
 export default function Navbar ({handleDrawerToggle}: NavbarProps) {
   const [searchVal, setSearchVal] = useContext(Context).searchVal;
+  
   const setCurrentSearchVal = useContext(Context).setCurrentSearchVal;
   const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+  };
+
+
   const onChangeSearchVal = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchVal(e.target.value)
     setIsDisabled(false);
@@ -37,7 +44,6 @@ export default function Navbar ({handleDrawerToggle}: NavbarProps) {
   const onDisabled = () => {
     setIsDisabled(true);
   }
-
 
   return (
     <Box className="navbar">
@@ -62,14 +68,17 @@ export default function Navbar ({handleDrawerToggle}: NavbarProps) {
           <SearchIcon />
         </IconButton>
       </div>
-      <ListItem className="navbar__sign-in" style={{width: 195, color: "#212121"}}>
-        <ListItemButton>
-          <ListItemIcon>
-            <PersonIcon/>
-          </ListItemIcon>
-          <ListItemText primary="Sign in"/>
-        </ListItemButton>
-      </ListItem>
+      <CustomLink to="/login">
+        <ListItem onClick={handleLogout} className="navbar__sign-in" style={{width: 195, color: "#212121"}}>
+          <ListItemButton>
+            <ListItemIcon>
+              <PersonIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Log out"/>
+          </ListItemButton>
+        </ListItem>
+      </CustomLink>
+
     </Box>
   );
 }

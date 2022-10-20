@@ -9,6 +9,8 @@ import Entertainment from './pages/entertainment';
 import Blog from './pages/blog';
 import Technology from './pages/technology';
 import Search from './pages/search';
+import Login  from './pages/login-page/Login';
+import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 
 export interface SearchT {
   search: Array<string | ((val: string)=>void)>
@@ -38,7 +40,8 @@ function App() {
     }
     }>
         <Routes>
-          <Route path='/' element={<RespDrawer/>}>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/' element={<ProtectedRoute><RespDrawer/></ProtectedRoute>}>
             <Route index element={<Home/>}/>
             <Route path='hot-news' element={<HotNews/>}/>
             <Route path='sports' element={<Sports/>}/>
@@ -52,5 +55,4 @@ function App() {
     </Context.Provider>
   );
 }
-
 export default App;

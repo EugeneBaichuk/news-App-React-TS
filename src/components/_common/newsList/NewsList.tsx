@@ -2,14 +2,11 @@ import { useEffect, useState } from "react";
 import NewsCard from "../card";
 import NewsService from "../../../services";
 import Loading from "../loading";
+import './newsList.css'
 
 type propsType = {
     headlines: string
     search?: string
-}
-
-interface articleT {
-    
 }
 
 export const NewsList: React.FC<propsType> = ({headlines, search}) => {
@@ -26,8 +23,8 @@ export const NewsList: React.FC<propsType> = ({headlines, search}) => {
         <>
             {!newsArr && (<Loading/>)}
             {newsArr && (
-                <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
-                    {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article} cardWidth={"93%"}/>)}
+                <div className="card-wrapper">
+                    {newsArr.map((article: any) => <NewsCard key={article.title} cardObj={article}/>)}
                 </div>
             )}
         </>
