@@ -1,4 +1,3 @@
-import { createContext, useState } from 'react';
 import {Routes, Route} from 'react-router-dom';
 import Home from './pages/home'
 import RespDrawer from './components/_layout/drawer';
@@ -10,49 +9,27 @@ import Blog from './pages/blog';
 import Technology from './pages/technology';
 import Search from './pages/search';
 import Login  from './pages/login-page/Login';
+import ActiveCard from './pages/activeCardPage';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
-
-export interface SearchT {
-  search: Array<string | ((val: string)=>void)>
-  searchVal: Array<string | ((val: string)=>void)>
-  setCurrentSearchVal: (() => void);
-}
-
-export const Context = createContext <SearchT>({
-  search: [],
-  searchVal: [],
-  setCurrentSearchVal: ()=>{},
-});
+import { Navigate } from "react-router-dom";
 
 function App() {
-  const [searchVal, setSearchVal] = useState("");
-  const [search, setSearch] = useState("");
-
-  const setCurrentSearchVal =  () => {
-    setSearch(searchVal);
-  }
-
   return (
-    <Context.Provider value={{
-      search: [search, setSearch],
-      searchVal: [searchVal, setSearchVal],
-      setCurrentSearchVal
-    }
-    }>
-        <Routes>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/' element={<ProtectedRoute><RespDrawer/></ProtectedRoute>}>
-            <Route index element={<Home/>}/>
-            <Route path='hot-news' element={<HotNews/>}/>
-            <Route path='sports' element={<Sports/>}/>
-            <Route path='business' element={<Business/>}/>
-            <Route path='entertainment' element={<Entertainment/>}/>
-            <Route path='technology' element={<Technology/>}/>
-            <Route path='blog' element={<Blog/>}/>
-            <Route path='search' element={<Search/>}/>
-          </Route>
-        </Routes>
-    </Context.Provider>
+    <Routes>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/' element={<ProtectedRoute><RespDrawer/></ProtectedRoute>}>
+        <Route index element={<Home/>}/>
+        <Route path='hotnews' element={<HotNews/>}/>
+        <Route path='hotnews/:id' element={<ActiveCard/>}/>
+        <Route path='sports' element={<Sports/>}/>
+        <Route path='business' element={<Business/>}/>
+        <Route path='entertainment' element={<Entertainment/>}/>
+        <Route path='technology' element={<Technology/>}/>
+        <Route path='blog' element={<Blog/>}/>
+        <Route path='search' element={<Search/>}/>
+        {/* <Route path=':id' element={<ActiveCard/>}/> */}
+      </Route>
+    </Routes>
   );
 }
 export default App;

@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { setSearchValue } from '../../../slice/searchSlice';
+
 import {useState} from 'react';
 import {Outlet} from 'react-router-dom';
 import { CustomLink } from '../../_common/customLink/CustomLink';
@@ -21,22 +24,25 @@ import BiotechIcon from '@mui/icons-material/Biotech';
 import {FC} from 'react';
 
 import './drawer.css';
-
 const drawerWidth = 200;
 interface Props {
   window?: () => Window;
 }
 
 export const RespDrawer: FC<Props> = ({ window }) => {
+  const dispatch = useDispatch();
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const clearSearchForm = () => {
+    dispatch(setSearchValue(''));
+  }
+
   const drawerArr = [
     {text:'Home', icon: (<HomeIcon/>), link: '/'}, 
-    {text:'Hot News', icon: (<NewReleasesIcon/>), link: 'hot-news' }, 
+    {text:'Hot News', icon: (<NewReleasesIcon/>), link: 'hotnews' }, 
     {text:'Sports', icon: (<SportsFootballIcon/>), link: 'sports'}, 
     {text:'Business', icon: (<BusinessCenterIcon/>), link: 'business'},
     {text:'Entertainment', icon: (<SportsEsportsIcon/>), link: 'entertainment'},
@@ -50,7 +56,7 @@ export const RespDrawer: FC<Props> = ({ window }) => {
         <Toolbar/>
         {drawerArr.map(({text, icon, link}) => (
           <CustomLink key={text} to={link} >
-            <ListItem disablePadding>
+            <ListItem onClick={clearSearchForm} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   {icon}
@@ -59,7 +65,6 @@ export const RespDrawer: FC<Props> = ({ window }) => {
               </ListItemButton>
             </ListItem>
           </CustomLink>
-
         ))}
       </List>
       

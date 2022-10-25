@@ -1,6 +1,5 @@
-import {ChangeEvent, useContext, useState} from 'react';
+import {ChangeEvent, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Context } from '../../../App';
 import Box from '@mui/material/Box';
 import PersonIcon from '@mui/icons-material/Person';
 import IconButton from '@mui/material/IconButton';
@@ -12,42 +11,46 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import MenuIcon from '@mui/icons-material/Menu';
 import TextField from '@mui/material/TextField';
 import { CustomLink } from '../../_common/customLink/CustomLink';
-
+import { useSelector, useDispatch } from "react-redux";
+import { setSearchValue, setSearch, showSearchValue } from '../../../slice/searchSlice';
 
 import './navbar.css';
-
 type NavbarProps = {
   handleDrawerToggle: () => void;
 }
 
 export default function Navbar ({handleDrawerToggle}: NavbarProps) {
-  const [searchVal, setSearchVal] = useContext(Context).searchVal;
-  
-  const setCurrentSearchVal = useContext(Context).setCurrentSearchVal;
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.clear();
-  };
+  const searchValue = useSelector(showSearchValue);
+  const dispatch = useDispatch();
 
-
-  const onChangeSearchVal = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchVal(e.target.value)
+  const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchValue(e.target.value));
     setIsDisabled(false);
   };
-  const [isDisabled, setIsDisabled] = useState(false);
 
-  const onSearch = () => {
-    setCurrentSearchVal();
+  const onSetSearch = () => {
+    dispatch(setSearch(searchValue));
     navigate('/search');
   }
 
+  let ls = localStorage.getItem("auth") || "";
+  const {name} = JSON.parse(ls);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.setItem("auth", JSON.stringify(''));
+  };
+
+  const [isDisabled, setIsDisabled] = useState(false);
   const onDisabled = () => {
     setIsDisabled(true);
   }
 
   return (
     <Box className="navbar">
-      <div className="navbar__logo">SuperLogo</div>
+      <div>
+        <div className="navbar__logo">Hello {name}!</div>
+      </div>
+      
       <IconButton aria-label="open drawer" edge="start"
         onClick={handleDrawerToggle}
         sx={{ margin: "10px 20px", display: { sm: 'none' } }}
@@ -59,12 +62,12 @@ export default function Navbar ({handleDrawerToggle}: NavbarProps) {
           error={isDisabled}
           label={isDisabled ? "the input shouldn't be empty": "Search" }
           id="standard-error-helper-text"
-          value={searchVal}
-          onChange={onChangeSearchVal}
+          value={searchValue}
+          onChange={onChangeSearchValue}
           variant="standard"
           style={{padding: "0 0 15px 0"}}
         />
-        <IconButton type="button" aria-label="search"  onClick={!!searchVal ? onSearch: onDisabled}>
+        <IconButton type="button" aria-label="search"  onClick={!!searchValue ? onSetSearch : onDisabled}>
           <SearchIcon />
         </IconButton>
       </div>
