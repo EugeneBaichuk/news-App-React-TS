@@ -42,7 +42,7 @@ export const RespDrawer: FC<Props> = ({ window }) => {
 
   const drawerArr = [
     {text:'Home', icon: (<HomeIcon/>), link: '/'}, 
-    {text:'Hot News', icon: (<NewReleasesIcon/>), link: 'hotnews' }, 
+    {text:'Hot News', icon: (<NewReleasesIcon/>), link: 'hotnews',  }, 
     {text:'Sports', icon: (<SportsFootballIcon/>), link: 'sports'}, 
     {text:'Business', icon: (<BusinessCenterIcon/>), link: 'business'},
     {text:'Entertainment', icon: (<SportsEsportsIcon/>), link: 'entertainment'},

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setActiveCard } from "../../../slice/activeCardSlice";
 import NewsCard from "../card";
 import NewsService from "../../../services";
@@ -13,6 +13,7 @@ type propsType = {
 }
 
 export const NewsList: React.FC<propsType> = ({headlines, search}) => {
+
     const [newsArr, setNewsArr] = useState <any | null> (null);
     const dispatch = useDispatch();
 
@@ -34,7 +35,7 @@ export const NewsList: React.FC<propsType> = ({headlines, search}) => {
             {newsArr && (
                 <div>
                 <div className="card-wrapper">
-                    {newsArr.map((article: any, id: number) => <NewsCard headlines={headlines} key={id} id={id} onShowDetails={onShowDetails} cardObj={article}/>)}
+                    {newsArr.map((article: any, id: number) => <NewsCard headline={headlines} key={id} id={id} onShowDetails={onShowDetails} cardObj={article}/>)}
                 </div>
                 <Pagination count={10} style={{margin:"0 auto 20px", width: "fit-content"}}/>
                 </div>

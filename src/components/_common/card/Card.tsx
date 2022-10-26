@@ -6,20 +6,20 @@ import CardContent from '@mui/material/CardContent';
 import './card.css'
 
 type Props = {
-  headlines: string,
+  headline: string,
   cardObj: any;
   id: number;
   onShowDetails: (id: number) => void
 }
 
-export const  NewsCard: FC<Props> =  ({cardObj, id, onShowDetails}) => {
+export const  NewsCard: FC<Props> =  ({headline, cardObj, id, onShowDetails}) => {
   const {urlToImage, title, description, publishedAt} = cardObj;
   const transformString = (string: string, num: number, length: number) => {
     return (string.length > num) ? `${string.slice(0, length)}...`: string;
   }
   
   return (
-    <Link to={`${id}`} style={{textDecoration: 'none', width: '100%', margin: '0 20px 40px',}}>
+    <Link to={`${headline}/${id}`} style={{textDecoration: 'none', width: '100%', margin: '0 20px 40px',}}>
       <Card onClick={() => onShowDetails(id)} style={{ display: 'flex', width: "100%" }}>
         <img src={urlToImage || "https://whey.kz/267px-kirkland_signature_logo-svg/"} alt="img" className='card__img'/>
         <Box  style={{ display: 'flex', flexDirection: 'column' }}>
