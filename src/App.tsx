@@ -32,7 +32,6 @@ function App() {
         <Route path='blog' element={<Blog/>}/>
         <Route path='search' element={<Search/>}/>
         <Route path='search/:headline/:id' element={<ActiveCard/>}/>
-        {/* <Route path=':id' element={<ActiveCard/>}/> */}
       </Route>
     </Routes>
   );

@@ -21,7 +21,7 @@ export const  NewsCard: FC<Props> =  ({headline, cardObj, id, onShowDetails}) =>
   return (
     <Link to={`${headline}/${id}`} style={{textDecoration: 'none', width: '100%', margin: '0 20px 40px',}}>
       <Card onClick={() => onShowDetails(id)} style={{ display: 'flex', width: "100%" }}>
-        <img src={urlToImage || "https://whey.kz/267px-kirkland_signature_logo-svg/"} alt="img" className='card__img'/>
+        <img src={urlToImage || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcnyHcErjXASFe1Imj6U_2lmC6xN-UCNyNKuIvSB21UX3ooLyEgBXgnNWo2TBz6pE9gME&usqp=CAU"} alt="img" className='card__img'/>
         <Box  style={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent style={{ flex: '1 0 auto' }}>
             <div className='card__date'>

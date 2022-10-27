@@ -22,9 +22,9 @@ export default function ActiveCard() {
     return (
         <>
         {!newsArr && (<Loading/>)}
-        {!!newsArr && (<article style={{position: "absolute", zIndex: '50', margin: "0 50px 70px 25px"}}>
+        {!!newsArr && (<article style={{ margin: "0 50px 70px 25px"}}>
             <Button onClick={() => navigate(-1)} style={{margin: "0 0 5px"}} size="large"><ArrowBackIcon/> BACK</Button>
-            <img style={{display: "block", width:"70%", height: "300px", objectFit: "cover"}}  src={activeCard.urlToImage} alt="img" />
+            <img style={{display: "block", width:"70%", height: "300px", objectFit: "cover"}}  src={activeCard.urlToImage || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcnyHcErjXASFe1Imj6U_2lmC6xN-UCNyNKuIvSB21UX3ooLyEgBXgnNWo2TBz6pE9gME&usqp=CAU"} alt="img" />
             <div className='card__date'>
             {`date: ${activeCard.publishedAt.slice(0,10)} time: ${activeCard.publishedAt.slice(11,19)}`}
             </div>
