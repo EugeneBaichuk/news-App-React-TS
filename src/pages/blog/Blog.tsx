@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { blogListInterface } from '../../components/types';
 
 export const Blog = () => {
   const [blogList, setBlogList] = useState([
@@ -59,58 +60,57 @@ export const Blog = () => {
 
   const onDeleteCard = (id: number) => (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    const filteredState = localBlogList.filter((item: any) => (item.id !== id));
+    const filteredState = localBlogList.filter((item: blogListInterface) => (item.id !== id));
     setBlogList(filteredState);
     localStorage.setItem("blog", JSON.stringify(filteredState))
 }
-const [open, setOpen] = useState(false);
-const [loginVals, setLoginVals] = useState({
-  name: "",
-  email: ""
-})
-const {isAuth} = JSON.parse(localStorage.getItem("blogAuth")!);
+  const [open, setOpen] = useState(false);
+  const [loginVals, setLoginVals] = useState({
+    name: "",
+    email: ""
+  })
+  const {isAuth} = JSON.parse(localStorage.getItem("blogAuth")!) || false;
 
-const {name,email} = loginVals;
+  const {name,email} = loginVals;
 
-const handleClickOpen = () => {
-  setOpen(true);
-};
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-const handleClose = () => {
-  setOpen(false);
-};
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-const [formError, setFormError] = useState({
-  name: false,
-  email: false
-});
-
-
-const handleLogin = () => {
-  localStorage.setItem("blogAuth", JSON.stringify({ isAuth: true }));
-  handleClose();
-};
-
-const onDisabled = () => {
-  setFormError({
-      name: !name,
-      email: !email
+  const [formError, setFormError] = useState({
+    name: false,
+    email: false
   });
-}
 
-const onSetLoginVals = (key: string) => (e: any) => {
-  setLoginVals(state => ({...state, [key]: e.target.value }))
-  setFormError(state => ({...state, [key]: false}));
-}
 
-const onBlogLogout = () => {
-  localStorage.setItem("blogAuth", JSON.stringify(''))
-  setLoginVals({
-      name: "",
-      email: ""
-  });
-}
+  const handleLogin = () => {
+    localStorage.setItem("blogAuth", JSON.stringify({ isAuth: true }));
+    handleClose();
+  };
 
+  const onDisabled = () => {
+    setFormError({
+        name: !name,
+        email: !email
+    });
+  }
+
+  const onSetLoginVals = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginVals(state => ({...state, [key]: e.target.value }))
+    setFormError(state => ({...state, [key]: false}));
+  }
+
+  const onBlogLogout = () => {
+    localStorage.setItem("blogAuth", JSON.stringify(''))
+    setLoginVals({
+        name: "",
+        email: ""
+    });
+  }
 
   return (
     <>
@@ -153,7 +153,7 @@ const onBlogLogout = () => {
         </DialogActions>
       </Dialog>
     </div>
-      {localBlogList.map((item: any) => <BlogCard isAuth={isAuth} key={item.id} onDeleteCard={onDeleteCard} {...item}/>)}
+      {localBlogList.map((item: blogListInterface) => <BlogCard isAuth={isAuth} key={item.id} onDeleteCard={onDeleteCard} {...item}/>)}
       <BlogAddForm isAuth={isAuth} setBlogList={setBlogList}/>
     </>
   )

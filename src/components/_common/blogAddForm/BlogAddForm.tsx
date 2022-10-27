@@ -4,13 +4,9 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
+import {blogListInterface, BlogAddFormProps} from "../../types"
 
-type Props = {
-    isAuth: boolean
-    setBlogList: (blogList: any) => void
-}
-
-export const BlogAddForm: FC<Props> = ({ setBlogList, isAuth }) => {
+export const BlogAddForm: FC<BlogAddFormProps> = ({ setBlogList, isAuth }) => {
     const defaultCardVal = {
         id: 100,
         name: "",
@@ -56,7 +52,7 @@ export const BlogAddForm: FC<Props> = ({ setBlogList, isAuth }) => {
         setAddCardForm(false);
         let id = 100;
         const countId = () => {
-            const checkId = localBlogList.find((item: any )=> item.id === id);
+            const checkId = localBlogList.find((item: blogListInterface )=> item.id === id);
             if (!checkId) {
                 return id
             } else {
