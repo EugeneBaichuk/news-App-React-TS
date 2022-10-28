@@ -1,6 +1,7 @@
 import NewsList from "../../components/_common/newsList";
+import {FC} from "react";
 
-const Entertainment = () => {
+const Entertainment: FC = () => {
   return <NewsList headlines={'entertainment'}/>;
 }
 

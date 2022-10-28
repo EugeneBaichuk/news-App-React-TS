@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useState, FC} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import PersonIcon from '@mui/icons-material/Person';
@@ -13,13 +13,10 @@ import TextField from '@mui/material/TextField';
 import { CustomLink } from '../../_common/customLink/CustomLink';
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchValue, setSearch, showSearchValue } from '../../../slice/searchSlice';
-
+import {NavbarProps} from "../../types";
 import './navbar.css';
-type NavbarProps = {
-  handleDrawerToggle: () => void;
-}
 
-export default function Navbar ({handleDrawerToggle}: NavbarProps) {
+const Navbar: FC<NavbarProps> = ({handleDrawerToggle}) => {
   const searchValue = useSelector(showSearchValue);
   const dispatch = useDispatch();
 
@@ -40,7 +37,7 @@ export default function Navbar ({handleDrawerToggle}: NavbarProps) {
     localStorage.setItem("auth", JSON.stringify(''));
   };
 
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const onDisabled = () => {
     setIsDisabled(true);
   }
@@ -81,7 +78,8 @@ export default function Navbar ({handleDrawerToggle}: NavbarProps) {
           </ListItemButton>
         </ListItem>
       </CustomLink>
-
     </Box>
   );
 }
+
+export default Navbar; 

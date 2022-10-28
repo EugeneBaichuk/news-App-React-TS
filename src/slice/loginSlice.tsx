@@ -9,7 +9,7 @@ const loginSlice = createSlice({
     name: "login",
     initialState, 
     reducers: {
-        setLoginVals: (state: any, action: any) => {
+        setLoginVals: (state: any, action) => {
             const {val, param} = action.payload
             state[param] = val
         }

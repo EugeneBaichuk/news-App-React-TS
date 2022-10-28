@@ -4,19 +4,10 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import './card.css'
-import {cardInterface} from "../../types";
-
-type NewsCardProps = {
-  headline: string,
-  cardObj: cardInterface;
-  id: number;
-  onShowDetails: (id: number) => void
-}
+import { NewsCardProps } from "../../types";
 
 export const  NewsCard: FC<NewsCardProps> =  ({headline, cardObj, id, onShowDetails}) => {
   const {urlToImage, title, description, publishedAt} = cardObj;
-  console.log(cardObj);
-  
   const transformString = (string: string, num: number, length: number) => {
     return (string.length > num) ? `${string.slice(0, length)}...`: string;
   }

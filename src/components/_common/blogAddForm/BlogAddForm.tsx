@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
-import {blogListInterface, BlogAddFormProps} from "../../types"
+import {blogListInterface, BlogAddFormProps, errorInputInterface} from "../../types"
 
 export const BlogAddForm: FC<BlogAddFormProps> = ({ setBlogList, isAuth }) => {
     const defaultCardVal = {
@@ -19,9 +19,9 @@ export const BlogAddForm: FC<BlogAddFormProps> = ({ setBlogList, isAuth }) => {
         descr: false       
     }
 
-    const [addCardForm, setAddCardForm] = useState(false);
-    const [addCardVals, setAddCardVals] = useState({...defaultCardVal});
-    const [errorInputs, setErrorInputs] = useState({...defaultErrorInputs});
+    const [addCardForm, setAddCardForm] = useState<boolean>(false);
+    const [addCardVals, setAddCardVals] = useState<blogListInterface>({...defaultCardVal});
+    const [errorInputs, setErrorInputs] = useState<errorInputInterface>({...defaultErrorInputs});
     const {name, img, descr } = addCardVals;
 
     const onSetNewCardVal = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {

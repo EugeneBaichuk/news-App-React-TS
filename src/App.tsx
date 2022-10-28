@@ -1,4 +1,5 @@
 import {Routes, Route} from 'react-router-dom';
+import {FC} from "react";
 import Home from './pages/home'
 import RespDrawer from './components/_layout/drawer';
 import HotNews from './pages/hotNews';
@@ -12,7 +13,7 @@ import Login  from './pages/login-page/Login';
 import ActiveCard from './pages/activeCardPage';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 
-function App() {
+const App:FC = () => {
   return (
     <Routes>
       <Route path='/login' element={<Login/>}/>

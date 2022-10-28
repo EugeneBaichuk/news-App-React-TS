@@ -5,18 +5,24 @@ import { setActiveCard } from "../../../slice/activeCardSlice";
 import NewsCard from "../card";
 import NewsService from "../../../services";
 import Loading from "../loading";
+import { NewsListProps, cardInterface } from "../../types";
 // import Pagination from '@mui/material/Pagination';
 // import PaginationItem from '@mui/material/PaginationItem';
 import './newsList.css'
 
-type propsType = {
-    headlines: string
-    search?: string
-}
+export const NewsList: React.FC<NewsListProps> = ({headlines, search}) => {
+    const [newsArr, setNewsArr] = useState <Array<cardInterface>> ([{author: "",
+    content: "",
+    description: "",
+    publishedAt: "",
+    source: {id: "",
+    name: ""},
+    title: "",
+    url: "",
+    urlToImage: ""}]);
 
-export const NewsList: React.FC<propsType> = ({headlines, search}) => {
-    const [newsArr, setNewsArr] = useState <any | null> (null);
-    
+    const loaded = newsArr[0].content;
+
     const dispatch = useDispatch();
     // const location = useLocation();
     // const query = new URLSearchParams(location.search);
@@ -31,17 +37,17 @@ export const NewsList: React.FC<propsType> = ({headlines, search}) => {
     }, [headlines, search]);
 
     const onShowDetails = (id: number) => {
-        const activeCard = newsArr.find((article: any, artId: number) => (id === artId));
+        const activeCard = newsArr.find((article: cardInterface, artId: number) => (id === artId));
         dispatch(setActiveCard(activeCard));
     }  
 
     return (
         <>
-            {!newsArr && (<Loading/>)}
-            {newsArr && (
+            {!loaded && (<Loading/>)}
+            {loaded && (
                 <div>
                 <div className="card-wrapper">
-                    {newsArr.map((article: any, id: number) => <NewsCard headline={headlines} key={id} id={id} onShowDetails={onShowDetails} cardObj={article}/>)}
+                    {newsArr.map((article: cardInterface, id: number) => <NewsCard headline={headlines} key={id} id={id} onShowDetails={onShowDetails} cardObj={article}/>)}
                 </div>
                     {/* <Pagination
                         style={{margin:"0 auto 20px", width: "fit-content"}}

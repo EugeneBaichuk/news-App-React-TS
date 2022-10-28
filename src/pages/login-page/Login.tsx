@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, FC, ChangeEvent} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginVals } from "../../slice/loginSlice"
-
 import { CustomLink } from '../../components/_common/customLink/CustomLink';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -11,15 +10,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { showLoginData } from '../../slice/loginSlice';
+import { formErrorInterface } from '../../components/types';
 
-export default function Login() {
-    const [formError, setFormError] = useState({
+const Login: FC = () => {
+    const [formError, setFormError] = useState<formErrorInterface>({
         name: false,
         email: false
     });
     const {name, email} = useSelector(showLoginData)
     const dispatch = useDispatch();
-    
     const handleLogin = () => {
         localStorage.setItem("auth", JSON.stringify({ isAuth: true , name, email }));
     };
@@ -31,7 +30,7 @@ export default function Login() {
         });
     }
 
-    const onSetLoginVals = (param: string) => (e: any) => {
+    const onSetLoginVals = (param: string) => (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setLoginVals({val: e.target.value, param}))
         setFormError(state => ({...state, [param]: false}));
     }
@@ -76,3 +75,5 @@ return (
     </div>
 );
 }
+
+export default Login;

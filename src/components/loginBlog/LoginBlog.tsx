@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, FC} from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,11 +6,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import {loginValsInterface, formErrorInterface} from "../types"
 
-export default function LoginFormDialog() {
-
-  const [open, setOpen] = useState(false);
-  const [loginVals, setLoginVals] = useState({
+const LoginFormDialog: FC = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [loginVals, setLoginVals] = useState<loginValsInterface>({
     name: "",
     email: ""
   })
@@ -26,25 +26,25 @@ export default function LoginFormDialog() {
     setOpen(false);
   };
 
-  const [formError, setFormError] = useState({
+  const [formError, setFormError] = useState<formErrorInterface>({
     name: false,
     email: false
-});
+  });
 
 
-const handleLogin = () => {
+  const handleLogin = () => {
     localStorage.setItem("blogAuth", JSON.stringify({ isAuth: true }));
     handleClose();
-};
+  };
 
-const onDisabled = () => {
+  const onDisabled = () => {
     setFormError({
-        name: !name,
-        email: !email
+      name: !name,
+      email: !email
     });
 }
 
-const onSetLoginVals = (key: string) => (e: any) => {
+const onSetLoginVals = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginVals(state => ({...state, [key]: e.target.value }))
     setFormError(state => ({...state, [key]: false}));
 }
@@ -59,15 +59,15 @@ const onBlogLogout = () => {
 
 return (
     <div>
-    {!isAuth && (<Button variant="outlined" onClick={handleClickOpen}>EDIT BLOG</Button>)}
-    {!!isAuth && (<Button variant="outlined" onClick={onBlogLogout}>LOG OUT</Button>)}
-    <Dialog open={open} onClose={handleClose}>
-    <DialogTitle>LOG IN</DialogTitle>
+      {!isAuth && (<Button variant="outlined" onClick={handleClickOpen}>EDIT BLOG</Button>)}
+      {!!isAuth && (<Button variant="outlined" onClick={onBlogLogout}>LOG OUT</Button>)}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>LOG IN</DialogTitle>
         <DialogContent>
-        <DialogContentText>
-            To log in this website, please enter your name and email address here.
-        </DialogContentText>
-        <TextField
+          <DialogContentText>
+              To log in this website, please enter your name and email address here.
+          </DialogContentText>
+          <TextField
             error={formError.name}
             autoFocus
             margin="dense"
@@ -78,9 +78,9 @@ return (
             onChange={onSetLoginVals('name')}
             fullWidth
             variant="standard"
-        />
-        <TextField
-        error={formError.email}
+          />
+          <TextField
+            error={formError.email}
             autoFocus
             margin="dense"
             id="email"
@@ -90,12 +90,14 @@ return (
             onChange={onSetLoginVals('email')}
             fullWidth
             variant="standard"
-        />
+          />
         </DialogContent>
         <DialogActions>
-            {(name && email) ? <Button onClick={handleLogin}>Log in</Button>: <Button onClick={onDisabled}>Log in</Button>}
+          {(name && email) ? <Button onClick={handleLogin}>Log in</Button>: <Button onClick={onDisabled}>Log in</Button>}
         </DialogActions>
       </Dialog>
     </div>
   );
 }
+
+export default LoginFormDialog;

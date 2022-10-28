@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { setSearchValue } from '../../../slice/searchSlice';
-
 import {useState} from 'react';
 import {Outlet} from 'react-router-dom';
 import { CustomLink } from '../../_common/customLink/CustomLink';
@@ -21,15 +20,12 @@ import BookIcon from '@mui/icons-material/Book';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import BiotechIcon from '@mui/icons-material/Biotech';
+import {RespDrawerProps} from "../../types"
 import {FC} from 'react';
-
 import './drawer.css';
 const drawerWidth = 200;
-interface Props {
-  window?: () => Window;
-}
 
-export const RespDrawer: FC<Props> = ({ window }) => {
+export const RespDrawer: FC<RespDrawerProps> = ({ window }) => {
   const dispatch = useDispatch();
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const handleDrawerToggle = () => {
@@ -51,7 +47,6 @@ export const RespDrawer: FC<Props> = ({ window }) => {
   ];
 
   const drawer = (
-    
     <div>
       <List>
         <Toolbar/>
@@ -68,12 +63,10 @@ export const RespDrawer: FC<Props> = ({ window }) => {
           </CustomLink>
         ))}
       </List>
-      
     </div>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-
   return (
     <>
       <AppBar

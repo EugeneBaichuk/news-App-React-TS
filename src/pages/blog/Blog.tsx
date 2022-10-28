@@ -1,6 +1,6 @@
 import BlogAddForm from '../../components/_common/blogAddForm';
 import BlogCard from '../../components/_common/blogCard';
-import {useState} from "react";
+import {useState, FC} from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -8,10 +8,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { blogListInterface } from '../../components/types';
+import { blogListInterface, loginValsInterface, formErrorInterface } from '../../components/types';
 
-export const Blog = () => {
-  const [blogList, setBlogList] = useState([
+export const Blog: FC = () => {
+  const [blogList, setBlogList] = useState<Array<blogListInterface>>([
     {
       id: 1,
       name: "Americano",
@@ -64,8 +64,8 @@ export const Blog = () => {
     setBlogList(filteredState);
     localStorage.setItem("blog", JSON.stringify(filteredState))
 }
-  const [open, setOpen] = useState(false);
-  const [loginVals, setLoginVals] = useState({
+  const [open, setOpen] = useState<boolean>(false);
+  const [loginVals, setLoginVals] = useState<loginValsInterface>({
     name: "",
     email: ""
   })
@@ -81,7 +81,7 @@ export const Blog = () => {
     setOpen(false);
   };
 
-  const [formError, setFormError] = useState({
+  const [formError, setFormError] = useState<formErrorInterface>({
     name: false,
     email: false
   });

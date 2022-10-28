@@ -1,12 +1,8 @@
 import {Link, useMatch} from  'react-router-dom';
 import {FC} from 'react';
+import {CustomLinkProps} from "../../types"
 
-type Props = {
-    children: React.ReactNode,
-    to: string,
-}
-
-export const CustomLink: FC<Props> = ({children, to, ...props}) => {
+export const CustomLink: FC<CustomLinkProps> = ({children, to, ...props}) => {
     const much = useMatch(to);
     return (
         <Link to={to}

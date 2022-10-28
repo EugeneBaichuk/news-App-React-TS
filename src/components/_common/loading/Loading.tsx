@@ -1,7 +1,8 @@
 import Backdrop from '@mui/material/Backdrop';
+import {FC} from "react";
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Loading() {
+export const Loading: FC = () => {
   return (
     <div>
       <Backdrop
@@ -13,3 +14,5 @@ export default function Loading() {
     </div>
   );
 }
+
+export default Loading;

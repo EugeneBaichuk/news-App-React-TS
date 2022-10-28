@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {reduxStateInterface} from "../components/types";
 
 const initialState = {
     id: 100,
@@ -11,12 +12,12 @@ const addBlogCardSlice = createSlice({
     name: "addBlogCardSlice",
     initialState, 
     reducers: {
-        setAddBlogCardSlice: (state: any, action: any) => {
-            state.addBlogCardSlice = action.payload
+        setAddBlogCardSlice: (state, action) => {
+            state = action.payload
         }
     }
 })
 
 export const { setAddBlogCardSlice } = addBlogCardSlice.actions;
-export const showAddBlogCardSlice = (state: any) => state.addBlogCardSlice;
+export const showAddBlogCardSlice = (state: reduxStateInterface) => state.addBlogCardSlice;
 export default addBlogCardSlice.reducer;
