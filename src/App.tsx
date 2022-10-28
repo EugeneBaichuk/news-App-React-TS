@@ -1,5 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
-import {FC} from "react";
+import {BrowserRouter as Router} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import {store} from './slice/index';
 import Home from './pages/home'
 import RespDrawer from './components/_layout/drawer';
 import HotNews from './pages/hotNews';
@@ -13,8 +15,10 @@ import Login  from './pages/login-page/Login';
 import ActiveCard from './pages/activeCardPage';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 
-const App:FC = () => {
+const App = () => {
   return (
+    <Provider store={store}>
+    <Router>
     <Routes>
       <Route path='/login' element={<Login/>}/>
       <Route path='/' element={<ProtectedRoute><RespDrawer/></ProtectedRoute>}>
@@ -35,6 +39,8 @@ const App:FC = () => {
         <Route path='search/:headline/:id' element={<ActiveCard/>}/>
       </Route>
     </Routes>
+    </Router>
+    </Provider>
   );
 }
 export default App;

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { setActiveCard } from "../../../slice/activeCardSlice";
+import { getData, showData } from "../../../slice/getDataSlice";
 //import { Link, useLocation, useParams } from "react-router-dom";
 import NewsCard from "../card";
 import NewsService from "../../../services";
@@ -11,28 +12,18 @@ import { NewsListProps, cardInterface } from "../../types";
 import './newsList.css'
 
 export const NewsList: React.FC<NewsListProps> = ({headlines, search}) => {
-    const [newsArr, setNewsArr] = useState <Array<cardInterface>> ([{author: "",
-    content: "",
-    description: "",
-    publishedAt: "",
-    source: {id: "",
-    name: ""},
-    title: "",
-    url: "",
-    urlToImage: ""}]);
-
-    const loaded = newsArr[0].content;
-
     const dispatch = useDispatch();
+    const newsArr = useSelector(showData);
+    const loaded = newsArr[0]
+
     // const location = useLocation();
     // const query = new URLSearchParams(location.search);
     // const page = parseInt(query.get('page') || '1', 10);
-    
 
     useEffect(() => {
         NewsService.getResource(`everything?q=${headlines}&pageSize=20&language=en`)
         .then(res => {
-            setNewsArr(res.data.articles);
+            dispatch(getData(res.data.articles))
         });
     }, [headlines, search]);
 
