@@ -1,2 +1,2 @@
-Key features: React-based app, SPA, React ToolkitKey features: React-based app, SPA, React Toolkit
+Key features: React-based app, SPA, React Toolkit
 Skills: React.js · JavaScript · HTML · CSS · React Hooks · React Router · Redux Toolkit · Redux Thunk · REST APIs · MUI
